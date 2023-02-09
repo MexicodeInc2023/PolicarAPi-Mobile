@@ -12,10 +12,12 @@ module.exports = function(app) {
 
   app.get("/api/test/all", controller.allAccess);
 
+  // Obtener datos del usuario por id
+
   app.get(
-    "/api/test/user",
+    "/api/user/student/:id",
     [authJwt.verifyToken],
-    controller.userCard
+    controller.userCard 
   );
 
 };

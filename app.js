@@ -21,15 +21,21 @@ const db = require("./app/models");
 
 db.sequelize.sync();
 
+
+//auth 
+require("./app/routes/auth.routes")(app);
+require('./app/routes/user.routes')(app);
+
 // Rutas
 //Bienvenida
 app.get("/", (req, res) => {
     res.send(`<body style="background: #2f363d; font-family: system-ui; color: white; text-align:center;"><h1>Esta vivo!!</h1> <br/> <h2> Bienvenido a la API de Policard_Mobile :D</h2></body>`);
   });
+app.post("/", (req, res) => {
+    res.send("Hola, Hola desde la PoliApi :D");
+  });
 
-//auth 
-require("./app/routes/auth.routes")(app);
-require('./app/routes/user.routes')(app);
+  
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
