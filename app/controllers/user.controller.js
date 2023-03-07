@@ -20,6 +20,7 @@ exports.userCard = (req, res) => {
         const studentId = studentsData[0].id;
         // hacemos una promesa para obtener los datos de emergencia y carreras por el id de estudiante
         return Promise.all([
+          // obtenemos los datos de emergencia y carreras
           Emergency.findAll({
             where: { studentId: studentId }
           }),
@@ -27,6 +28,7 @@ exports.userCard = (req, res) => {
             where: { studentId: studentId }
           })
         ]).then(([emergencyData, careersData]) => {
+          // enviamos los datos de estudiante, emergencia y carreras
           res.status(200).send({ studentsData, emergencyData, careersData });
         });
       }) // manejo de errores

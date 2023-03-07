@@ -9,7 +9,7 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
-  // Save User to Database
+  // Guardar Usuario en la base de datos
   User.create({
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8)
@@ -22,7 +22,7 @@ exports.signup = (req, res) => {
     });
 };
 
-// Sign in
+// Metodo para iniciar sesion
 exports.signin = (req, res) => {
   User.findOne({
     where: {
@@ -30,10 +30,11 @@ exports.signin = (req, res) => {
     }
   })
     .then(user => {
+      // Si no existe el usuario
       if (!user) {
         return res.status(404).send({ message: "Email Not found." });
       }
-
+       
       var passwordIsValid = bcrypt.compareSync(
         req.body.password,
         user.password

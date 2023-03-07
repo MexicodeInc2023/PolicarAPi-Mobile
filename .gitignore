@@ -23,6 +23,7 @@ database/
 
 *migrate.js
 
+*momentaneo.js
 # Database files
 *.sqlite
 
