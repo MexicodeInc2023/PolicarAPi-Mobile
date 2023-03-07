@@ -12,8 +12,8 @@ module.exports = function(app) {
 
   app.get("/api/test/all", controller.allAccess);
 
-  // Obtener datos del usuario por id
 
+  // Obtener datos del usuario por id
   app.get(
     "/api/user/student/:id",
     [authJwt.verifyToken],
